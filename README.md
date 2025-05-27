@@ -39,6 +39,6 @@ python main.py
 
 ## Managing ESP/ESM Files
 
-![The default Nirn Weaver ESM Manager.](https://github.com/ScorpioGameKing/NirnWeaver/assets/images/NirnWeaverESPTUI.png)
+![The default Nirn Weaver ESM Manager.](https://github.com/ScorpioGameKing/NirnWeaver/blob/main/assets/images/NirnWeaverESPTUI.png)
 
 > The default ESP Managing view
