@@ -1,0 +1,33 @@
+#load_order {
+	width: 100%;
+	height: 15fr;
+}
+
+#esp-staging {
+	width: 100%;
+	height: 15fr;	
+}
+
+#status-bar {
+	height: 0.5fr;
+	
+	.un-install {
+		height: 1fr;
+		text-style: italic;
+	}
+
+	.install {
+		height: 1fr;
+		text-style: italic;
+	}
+}
+
+.uninstalled-esp {
+	width: 50%;
+	height: 100%;
+}
+
+.installed-esp {
+	width: 50%;
+	height: 100%;
+}
