@@ -13,7 +13,8 @@
 
 	[] Stage & Install/Uninstall Pak mods
 	[] Stage & Install/Uninstall OBSE Plugins
-	[] Stage $ Install/Uninstall UE4SS Mods
+	[] Stage & Install/Uninstall UE4SS Mods
+	[] Config Options
 	[] Bundle Mods for bulk Install/Uninstall
 	[] Windows Support
 
@@ -39,6 +40,24 @@ python main.py
 
 ## Managing ESP/ESM Files
 
-![The default Nirn Weaver ESM Manager.](https://github.com/ScorpioGameKing/NirnWeaver/blob/main/assets/images/NirnWeaverESPTUI.png)
+![The default ESP Managing view.](https://github.com/ScorpioGameKing/NirnWeaver/blob/main/assets/images/NirnWeaverESPTUI.png)
 
 > The default ESP Managing view
+
+### Load Order
+
+![The ESP Load Order Manager.](https://github.com/ScorpioGameKing/NirnWeaver/blob/main/assets/images/NirnWeaverESPLoadOrder.png)
+
+> The ESP Load Order Manager
+
+### Staging View
+
+![The ESP Staging Manager.](https://github.com/ScorpioGameKing/NirnWeaver/blob/main/assets/images/NirnWeaverESPStaging.png)
+
+> The ESP Staging Manager
+
+### Status Bar and Keybinds
+
+![The Status-bar and Keybinds.](https://github.com/ScorpioGameKing/NirnWeaver/blob/main/assets/images/NirnWeaverESPKeys.png)
+
+> The Status-bar and Keybinds
