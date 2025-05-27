@@ -1,11 +1,21 @@
 #load_order {
 	width: 100%;
-	height: 15fr;
+	height: 16fr;
 }
 
 #esp-staging {
 	width: 100%;
-	height: 15fr;	
+	height: 16fr;
+
+	.uninstalled-esp {
+		width: 5fr;
+		height: 1fr;
+	}
+	
+	.installed-esp {
+		width: 5fr;
+		height: 1fr;
+	}
 }
 
 #status-bar {
@@ -22,12 +32,4 @@
 	}
 }
 
-.uninstalled-esp {
-	width: 50%;
-	height: 100%;
-}
 
-.installed-esp {
-	width: 50%;
-	height: 100%;
-}

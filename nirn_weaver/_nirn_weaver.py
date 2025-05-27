@@ -4,7 +4,7 @@ from shutil import copy2
 from nirn_weaver.ui import OrderPanel, StagingTree, StatusBar
 from nirn_weaver import NirnPaths
 from textual.app import App, ComposeResult
-from textual.widgets import Header, Footer
+from textual.widgets import Header, Footer, TabbedContent, TabPane, Label
 
 class NirnWeaver(App):
 
@@ -27,7 +27,7 @@ class NirnWeaver(App):
         
         with open(NirnPaths.OB_PLUGINS_TXT, "r") as f:
             self.load_order = [(i, name) for i, name in enumerate(f.read().splitlines())]
-            
+
         self.oPanel = OrderPanel(
             [
                 ("LOAD ORDER", "PLUGIN NAME")
@@ -35,9 +35,7 @@ class NirnWeaver(App):
             self.load_order
         )
 
-        self.sBar = StatusBar()
-
-        self.sTree = StagingTree(self.oPanel.table, self.sBar)
+        self.sTree = StagingTree(self.oPanel.table)
 
     def on_mount(self) -> None:
         self.theme = "gruvbox"
@@ -46,9 +44,18 @@ class NirnWeaver(App):
     def compose(self) -> ComposeResult:
         yield Header()
         yield Footer()
-        yield self.oPanel.show_table()
-        yield self.sTree.show_stage()
-        yield self.sBar.show_bar()
+
+        with TabbedContent(initial="esp-manager"):
+            with TabPane("ESP Manager", id="esp-manager"):
+                yield self.oPanel.show_table()
+                yield self.sTree.show_stage()
+                yield StatusBar().show_bar()
+            with TabPane("PAK Manager", id="pak-manager"):
+                yield Label("WIP")
+            with TabPane("OBSE Manager", id="obse-manager"):
+                yield Label("WIP")
+            with TabPane("UE4SS Manager", id="ue4ss-manager"):
+                yield Label("WIP")
 
     def action_move_entry_down(self) -> None:
         row_index = self.oPanel.table.cursor_coordinate[0]
