@@ -46,6 +46,8 @@ class NirnWeaver(App):
         yield Footer()
 
         with TabbedContent(initial="esp-manager"):
+            with TabPane("Settings", id="settings"):
+                yield Label("WIP")
             with TabPane("ESP Manager", id="esp-manager"):
                 yield self.oPanel.show_table()
                 yield self.sTree.show_stage()
