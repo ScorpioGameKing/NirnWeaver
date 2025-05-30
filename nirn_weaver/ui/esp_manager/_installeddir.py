@@ -16,7 +16,6 @@ class InstalledDir(DirectoryTree):
     def bind_reload(self, dtree, opanel):
         self.uninstall = dtree
         self.opanel = opanel
-        #self.sbar = sbar
 
     # UNINSTALL THE SELECTED FILE
     def on_directory_tree_file_selected(node, path):
@@ -31,4 +30,3 @@ class InstalledDir(DirectoryTree):
         remove(f"{NirnPaths.OB_ESP_DATA_PATH}{basename(path.path)}")
         node.reload()
         node.uninstall.reload()
-        #node.sbar.reload()

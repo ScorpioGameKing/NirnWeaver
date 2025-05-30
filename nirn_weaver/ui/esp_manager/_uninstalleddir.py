@@ -17,7 +17,6 @@ class UninstalledDir(DirectoryTree):
     def bind_reload(self, dtree, opanel):
         self.install = dtree
         self.opanel = opanel
-        #self.sbar = sbar
 
     # INSTALL THE SELECTED FILE
     def on_directory_tree_file_selected(node, path):
@@ -28,4 +27,3 @@ class UninstalledDir(DirectoryTree):
         remove(path.path)
         node.reload()
         node.install.reload()
-        #node.sbar.reload()
