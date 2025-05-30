@@ -12,8 +12,8 @@ class NirnPaths():
     NW_PATH              = f"{USR_PATH}.local/share/NirnWeaver/"
 
     STAGING_PATH         = f"{NW_PATH}staging/"
-    UNINSTALLED_PATH     = f"{STAGING_PATH}uninstalled/"
-    INSTALLED_PATH       = f"{STAGING_PATH}installed/"
+    UNINSTALLED_PATH     = f"{STAGING_PATH}es/uninstalled/"
+    INSTALLED_PATH       = f"{STAGING_PATH}es/installed/"
 
     BUNDLES_PATH         = f"{STAGING_PATH}bundles/"
     BUN_UNINSTALLED_PATH = f"{BUNDLES_PATH}uninstalled/"
@@ -25,12 +25,13 @@ class NirnPaths():
     
     OBR_PATH             = f"{USR_PATH}.local/share/Steam/steamapps/common/Oblivion Remastered/"
     OB_WIN_64_PATH       = f"{OBR_PATH}OblivionRemastered/Binaries/Win64/"
-    OB_PAK_PATH          = f"{OBR_PATH}OblivionRemastered/Content/Paks/"
+    OB_PAK_PATH          = f"{OBR_PATH}OblivionRemastered/Content/Paks/~mods"
     OB_OBV_DATA_PATH     = f"{OBR_PATH}OblivionRemastered/Content/Dev/ObvData/"
     OB_ESP_DATA_PATH     = f"{OBR_PATH}OblivionRemastered/Content/Dev/ObvData/Data/"
     OB_PLUGINS_TXT       = f"{OBR_PATH}OblivionRemastered/Content/Dev/ObvData/Data/Plugins.txt"
 
     def check_folders():
+        # This is starting to feel bad but is probably fine
         if not exists(NirnPaths.NW_PATH):
             mkdir(NirnPaths.NW_PATH)
         if not exists(NirnPaths.STAGING_PATH):
@@ -45,6 +46,8 @@ class NirnPaths():
             mkdir(NirnPaths.BUN_UNINSTALLED_PATH)
         if not exists(NirnPaths.BUN_INSTALLED_PATH):
             mkdir(NirnPaths.BUN_INSTALLED_PATH)
+        if not exists(NirnPaths.OB_PAK_PATH):
+            mkdir(NirnPaths.OB_PAK_PATH)
 
     def stage_valid_es(scan_path, uninstalled_path, installed_path):
         print([path.basename(x) for x in glob(f"{scan_path}**/*.es*", recursive=True)])

@@ -3,7 +3,7 @@ from os import remove
 from os.path import basename
 from shutil import copy2
 from nirn_weaver import NirnPaths
-from nirn_weaver.ui._opanel import OrderPanel
+from nirn_weaver.ui.esp_manager._opanel import OrderPanel
 from textual.widgets import DirectoryTree
 
 class UninstalledDir(DirectoryTree):

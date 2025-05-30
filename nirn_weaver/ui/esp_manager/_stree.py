@@ -1,8 +1,8 @@
 from textual.containers import Horizontal
 from textual.widgets import DirectoryTree
 from nirn_weaver import NirnPaths
-from nirn_weaver.ui._uninstalleddir import UninstalledDir
-from nirn_weaver.ui._installeddir import InstalledDir
+from nirn_weaver.ui.esp_manager._uninstalleddir import UninstalledDir
+from nirn_weaver.ui.esp_manager._installeddir import InstalledDir
 
 class StagingTree():
     stage:Horizontal

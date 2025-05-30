@@ -1,7 +1,8 @@
 from glob import glob
 from os import path, mkdir, remove
+from os.path import basename
 from shutil import copy2
-from nirn_weaver.ui import OrderPanel, StagingTree, StatusBar
+from nirn_weaver.ui.esp_manager import OrderPanel, StagingTree, StatusBar
 from nirn_weaver import NirnPaths
 from textual.app import App, ComposeResult
 from textual.widgets import Header, Footer, TabbedContent, TabPane, Label
@@ -53,7 +54,9 @@ class NirnWeaver(App):
                 yield self.sTree.show_stage()
                 yield StatusBar().show_bar()
             with TabPane("PAK Manager", id="pak-manager"):
-                yield Label("WIP")
+                _paks = glob(f"{NirnPaths.OB_PAK_PATH}/**/*.*", recursive=True)
+                for pak in _paks:
+                    yield Label(basename(pak))
             with TabPane("OBSE Manager", id="obse-manager"):
                 yield Label("WIP")
             with TabPane("UE4SS Manager", id="ue4ss-manager"):
