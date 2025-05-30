@@ -5,6 +5,7 @@ from shutil import copy2
 from nirn_weaver.ui.esp_manager import OrderPanel, StagingTree, StatusBar
 from nirn_weaver import NirnPaths
 from textual.app import App, ComposeResult
+from textual.containers import Container
 from textual.widgets import Header, Footer, TabbedContent, TabPane, Label
 
 class NirnWeaver(App):
@@ -50,9 +51,14 @@ class NirnWeaver(App):
             with TabPane("Settings", id="settings"):
                 yield Label("WIP")
             with TabPane("ESP Manager", id="esp-manager"):
-                yield self.oPanel.show_table()
-                yield self.sTree.show_stage()
-                yield StatusBar().show_bar()
+                yield Container(
+                    self.oPanel.show_table(),
+                    self.sTree.show_stage(),
+                    # StatusBar.show_bar()
+                )
+                # yield self.oPanel.show_table()
+                # yield self.sTree.show_stage()
+                # yield StatusBar().show_bar()
             with TabPane("PAK Manager", id="pak-manager"):
                 _paks = glob(f"{NirnPaths.OB_PAK_PATH}/**/*.*", recursive=True)
                 for pak in _paks:
