@@ -43,7 +43,7 @@ class NirnPaths():
     # - OBLIVION -    
     OBR_PATH               = f"{USR_PATH}.local/share/Steam/steamapps/common/Oblivion Remastered/"
     OB_WIN_64_PATH         = f"{OBR_PATH}OblivionRemastered/Binaries/Win64/"
-    OB_PAK_PATH            = f"{OBR_PATH}OblivionRemastered/Content/Paks/~mods"
+    OB_PAK_PATH            = f"{OBR_PATH}OblivionRemastered/Content/Paks/~mods/"
     OB_OBV_DATA_PATH       = f"{OBR_PATH}OblivionRemastered/Content/Dev/ObvData/"
     OB_ESP_DATA_PATH       = f"{OBR_PATH}OblivionRemastered/Content/Dev/ObvData/Data/"
     OB_PLUGINS_TXT         = f"{OBR_PATH}OblivionRemastered/Content/Dev/ObvData/Data/Plugins.txt"

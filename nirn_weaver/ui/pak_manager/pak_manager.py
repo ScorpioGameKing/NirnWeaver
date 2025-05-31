@@ -6,11 +6,13 @@ from textual.app import App, ComposeResult
 from textual.containers import Container
 from textual.widgets import Header, Footer, TabbedContent, TabPane, Label
 
-class PAKManager:
+class PAKManager(Container):
 
     sTree:StagingTree
     
-    def __init__(self):
+    def __init__(self, **kwargs):
+        super(Container, self).__init__(**kwargs)
+
         self.sTree = StagingTree()
 
     def show_manager1(self) -> Container:
@@ -21,5 +23,5 @@ class PAKManager:
             _panel._add_child(Label(basename(pak)))
         return _panel
 
-    def show_manager(self) -> Container:
-        return self.sTree.show_stage()
+    def compose(self) -> ComposeResult:
+        yield self.sTree.show_stage()

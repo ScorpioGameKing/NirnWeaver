@@ -18,16 +18,13 @@ class UninstalledDir(DirectoryTree):
 
     # INSTALL THE SELECTED FILE
     def on_directory_tree_file_selected(node, path):
-        bndlr = Bundler()
-        _bun = bndlr.install_bundle(
-            basename(path.path), 
-            NirnPaths.OB_PAK_DATA_PATH, 
-            NirnPaths.PAK_INSTALLED_PATH, 
-            NirnPaths.PAK_UNINSTALLED_PATH
-        )
-        
-        #copy2(path.path, f"{NirnPaths.PAK_INSTALLED_PATH}{basename(path.path)}")
-        #copy2(path.path, f"{NirnPaths.OB_PAK_DATA_PATH}{basename(path.path)}")
-        #remove(path.path)
+        if path.path != NirnPaths.PAK_UNINSTALLED_PATH:
+            bndlr = Bundler()
+            _bun = bndlr.install_bundle(
+                basename(path.path), 
+                NirnPaths.OB_PAK_PATH, 
+                NirnPaths.PAK_INSTALLED_PATH, 
+                NirnPaths.PAK_UNINSTALLED_PATH
+            )
         node.reload()
         node.install.reload()

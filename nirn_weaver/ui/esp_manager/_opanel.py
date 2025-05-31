@@ -5,6 +5,8 @@ class OrderPanel:
     _HEADERS = []
     _ROWS = []
 
+
+
     table:DataTable
 
     def __init__(self, headers, initial_rows):
