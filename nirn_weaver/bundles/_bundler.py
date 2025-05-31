@@ -8,10 +8,8 @@ from nirn_weaver import NirnPaths
 class Bundler:
 
     def create_bundle(self, to_path:str, bType:str, name:str, tags:list[str]=[""], description:str="") -> Bundle:
-        # Add mirror path ref and flip to not check to reduce file writes. Goes for all
-        if exists(f"{to_path}"):
-            rmtree(f"{to_path}")
-        mkdir(f"{to_path}")
+        if not exists(f"{to_path}"):
+            mkdir(f"{to_path}")
         return Bundle(bType, name, tags, description)
 
     def uninstall_bundle(self, bundle, from_path:str, staged_at:str, to_path:str):

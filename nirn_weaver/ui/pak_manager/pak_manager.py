@@ -15,13 +15,5 @@ class PAKManager(Container):
 
         self.sTree = StagingTree()
 
-    def show_manager1(self) -> Container:
-        # Globbing for files test
-        _paks = glob(f"{NirnPaths.OB_PAK_PATH}/*")
-        _panel = Container()
-        for pak in _paks:
-            _panel._add_child(Label(basename(pak)))
-        return _panel
-
     def compose(self) -> ComposeResult:
         yield self.sTree.show_stage()
