@@ -44,7 +44,7 @@ class NirnWeaver(App):
                 yield Label("WIP")
 
     def action_re_stage(self) -> None:
-        NirnPaths.stage_valid_es(NirnPaths.DOWNLOAD_PATH)
+        self.espman.sTree._installed_dir.stage_valid_es(NirnPaths.DOWNLOAD_PATH)
         self.pakman.sTree._installed_dir.stage_valid_paks(NirnPaths.DOWNLOAD_PATH)
         
         self.pakman.sTree._installed_dir.scan_installed_paks()

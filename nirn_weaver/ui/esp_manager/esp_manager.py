@@ -12,11 +12,6 @@ class ESPManager(Container):
     load_order:list
 
     BINDINGS = [
-        
-  
-    ]
-
-    BINDINGS = [
         ("ctrl+down", "move_entry_down()", "Move Entry Down"),      
         ("ctrl+up", "move_entry_up()", "Move Entry up"),
         ("ctrl+shift+s", "save_load_order()", "Save Load Order"),
@@ -69,3 +64,5 @@ class ESPManager(Container):
         with open(NirnPaths.OB_PLUGINS_TXT, "w") as f:
             for i in range(0, self.oPanel.table.row_count):
                 f.write(f"{self.oPanel.table.get_row_at(i)[1]}\n")
+
+

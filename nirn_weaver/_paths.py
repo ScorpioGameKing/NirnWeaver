@@ -1,8 +1,6 @@
 from pathlib import Path
-from shutil import copy2
-from os import path, remove, mkdir, listdir
-from os.path import exists, join
-from glob import glob
+from os import mkdir
+from os.path import exists
 
 class NirnPaths():
 
@@ -102,11 +100,3 @@ class NirnPaths():
         # - OBLIVION -
         if not exists(NirnPaths.OB_PAK_PATH):
             mkdir(NirnPaths.OB_PAK_PATH)
-
-    def stage_valid_es(scan_path):
-        esp_list = glob(f"{scan_path}**/*.es*", recursive=True)
-        for esp in esp_list:
-            if not path.exists(f"{NirnPaths.ES_INSTALLED_PATH}{path.basename(esp)}"):
-                if path.exists(f"{NirnPaths.ES_UNINSTALLED_PATH}{path.basename(esp)}"):
-                    remove(f"{NirnPaths.ES_UNINSTALLED_PATH}{path.basename(esp)}")
-                copy2(esp, f"{NirnPaths.ES_UNINSTALLED_PATH}{path.basename(esp)}")

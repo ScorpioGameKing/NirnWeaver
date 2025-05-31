@@ -1,5 +1,6 @@
+from glob import glob
 from os import remove
-from os.path import basename
+from os.path import basename, exists
 from shutil import copy2
 from nirn_weaver import NirnPaths
 from textual.widgets import DirectoryTree
@@ -28,3 +29,11 @@ class InstalledDir(DirectoryTree):
         remove(f"{NirnPaths.OB_ESP_DATA_PATH}{basename(path.path)}")
         node.reload()
         node.uninstall.reload()
+
+    def stage_valid_es(self, scan_path):
+        esp_list = glob(f"{scan_path}**/*.es*", recursive=True)
+        for esp in esp_list:
+            if not exists(f"{NirnPaths.ES_INSTALLED_PATH}{path.basename(esp)}"):
+                if exists(f"{NirnPaths.ES_UNINSTALLED_PATH}{path.basename(esp)}"):
+                    remove(f"{NirnPaths.ES_UNINSTALLED_PATH}{path.basename(esp)}")
+                copy2(esp, f"{NirnPaths.ES_UNINSTALLED_PATH}{path.basename(esp)}")
