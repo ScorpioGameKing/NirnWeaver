@@ -10,8 +10,8 @@ class StagingTree():
     _installed_dir:InstalledDir
 
     def __init__(self, opanel):
-        self._uninstalled_dir = UninstalledDir(NirnPaths.UNINSTALLED_PATH, "uninstalled-esp", label="UNINSTALLED")
-        self._installed_dir = InstalledDir(NirnPaths.INSTALLED_PATH, "installed-esp", label="INSTALLED")
+        self._uninstalled_dir = UninstalledDir(NirnPaths.ES_UNINSTALLED_PATH, "uninstalled-esp", label="UNINSTALLED")
+        self._installed_dir = InstalledDir(NirnPaths.ES_INSTALLED_PATH, "installed-esp", label="INSTALLED")
 
         self._installed_dir.bind_reload(self._uninstalled_dir, opanel)
         self._uninstalled_dir.bind_reload(self._installed_dir, opanel)

@@ -2,7 +2,7 @@ from os import remove
 from os.path import basename
 from shutil import copy2
 from nirn_weaver import NirnPaths
-from nirn_weaver.ui.esp_manager._opanel import OrderPanel
+from nirn_weaver.bundles import Bundler, Bundle
 from textual.widgets import DirectoryTree
 
 class UninstalledDir(DirectoryTree):
@@ -13,16 +13,21 @@ class UninstalledDir(DirectoryTree):
         self.classes = _class
 
     # BIND THE INSTALL TREE TO ALLOW FOR UPDATES
-    def bind_reload(self, dtree, opanel):
+    def bind_reload(self, dtree):
         self.install = dtree
-        self.opanel = opanel
 
     # INSTALL THE SELECTED FILE
     def on_directory_tree_file_selected(node, path):
-        row = [(node.opanel.row_count, basename(path.path))]
-        node.opanel.add_rows(row)
-        copy2(path.path, f"{NirnPaths.ES_INSTALLED_PATH}{basename(path.path)}")
-        copy2(path.path, f"{NirnPaths.OB_ESP_DATA_PATH}{basename(path.path)}")
-        remove(path.path)
+        bndlr = Bundler()
+        _bun = bndlr.install_bundle(
+            basename(path.path), 
+            NirnPaths.OB_PAK_DATA_PATH, 
+            NirnPaths.PAK_INSTALLED_PATH, 
+            NirnPaths.PAK_UNINSTALLED_PATH
+        )
+        
+        #copy2(path.path, f"{NirnPaths.PAK_INSTALLED_PATH}{basename(path.path)}")
+        #copy2(path.path, f"{NirnPaths.OB_PAK_DATA_PATH}{basename(path.path)}")
+        #remove(path.path)
         node.reload()
         node.install.reload()

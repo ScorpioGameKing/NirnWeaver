@@ -1,10 +1,7 @@
-from glob import glob
-#from os.path import basename
 from nirn_weaver.ui.esp_manager import ESPManager
 from nirn_weaver.ui.pak_manager import PAKManager
 from nirn_weaver import NirnPaths
 from textual.app import App, ComposeResult
-from textual.containers import Container
 from textual.widgets import Header, Footer, TabbedContent, TabPane, Label
 
 class NirnWeaver(App):
@@ -75,5 +72,8 @@ class NirnWeaver(App):
                 f.write(f"{self.espman.oPanel.table.get_row_at(i)[1]}\n")
 
     def action_re_stage(self) -> None:
-        NirnPaths.stage_valid_es(NirnPaths.DOWNLOAD_PATH, NirnPaths.UNINSTALLED_PATH, NirnPaths.INSTALLED_PATH)
+        NirnPaths.stage_valid_es(NirnPaths.DOWNLOAD_PATH)
+        self.pakman.sTree._installed_dir.scan_installed_paks()
+
         self.espman.sTree._uninstalled_dir.reload()
+        self.pakman.sTree._installed_dir.reload()

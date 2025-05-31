@@ -1,4 +1,3 @@
-from glob import glob
 from os import remove
 from os.path import basename
 from shutil import copy2
@@ -21,11 +20,10 @@ class InstalledDir(DirectoryTree):
     def on_directory_tree_file_selected(node, path):
         removal:RowKey
         for row in node.opanel.rows:
-            print(node.opanel.get_row(row)[1])
             if basename(path.path) == node.opanel.get_row(row)[1]:
                 removal = row
         node.opanel.remove_row(removal)
-        copy2(path.path, f"{NirnPaths.UNINSTALLED_PATH}{basename(path.path)}")
+        copy2(path.path, f"{NirnPaths.ES_UNINSTALLED_PATH}{basename(path.path)}")
         remove(path.path)
         remove(f"{NirnPaths.OB_ESP_DATA_PATH}{basename(path.path)}")
         node.reload()

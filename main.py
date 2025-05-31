@@ -8,7 +8,7 @@ def main():
     app = NirnWeaver()
 
     NirnPaths.check_folders()
-    NirnPaths.stage_valid_es(NirnPaths.DOWNLOAD_PATH, NirnPaths.UNINSTALLED_PATH, NirnPaths.INSTALLED_PATH)
+    NirnPaths.stage_valid_es(NirnPaths.DOWNLOAD_PATH)
 
     # Testing Bundles
     # bndlr = Bundler()

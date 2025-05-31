@@ -24,7 +24,6 @@ class OrderPanel:
     def add_row(self, row):
         self._ROWS.append(row)
         self.table.add_row(*row)
-        print(row)
 
     def add_rows(self, rows):
         self.table.add_rows(rows[0:])
