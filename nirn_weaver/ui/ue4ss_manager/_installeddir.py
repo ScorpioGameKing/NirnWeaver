@@ -31,19 +31,19 @@ class InstalledDir(DirectoryTree):
                 #print(mod)
                 _pBase = basename(mod)
                 _pFull = f"{NirnPaths.UE4SS_INSTALLED_PATH}{_pBase}/"
+                _bun = bndlr.create_bundle(
+                    _pFull, 
+                    "UE4SS", 
+                    _pBase
+                )
                 if not exists(_pFull):
-                    _bun = bndlr.create_bundle(
-                        _pFull, 
-                        "UE4SS", 
-                        _pBase
-                    )
                     _files = listdir(f"{mod}/")
                     for _fName in _files:
                         if isdir(join(f"{mod}/", _fName)):
                             copytree(join(f"{mod}/", _fName), f"{_pFull}{_fName}")
                         else:
                             copy2(join(f"{mod}/", _fName), _pFull)
-                    self.bundles.update({_pBase:_bun})
+                self.bundles.update({_pBase:_bun})
 
     def stage_valid_mods(self, scan_path):
         mod_list = glob(f"{scan_path}**/*", recursive=True)
@@ -90,7 +90,7 @@ class InstalledDir(DirectoryTree):
                 )
                 self.uninstall.reload()
             
-    def action_uninstall_plugin(self):
+    def action_uninstall_mod(self):
         if self.cursor_node.data.path != NirnPaths.UE4SS_INSTALLED_PATH:
             bndlr = Bundler()
             bndlr.uninstall_bundle(
