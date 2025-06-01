@@ -27,7 +27,6 @@ class InstalledDir(DirectoryTree):
         bndlr = Bundler()
         plugin_list = glob(f"{NirnPaths.OB_OBSE_PLUGINS_PATH}/*")
         for plugin in plugin_list:
-            print(plugin)
             _pBase = basename(plugin)
             _pFull = f"{NirnPaths.OBSE_INSTALLED_PATH}{_pBase}/"
             _bun = bndlr.create_bundle(
@@ -48,14 +47,12 @@ class InstalledDir(DirectoryTree):
             if not exists(f"{NirnPaths.OBSE_INSTALLED_PATH}{_split[0]}/"):
                 if len(_split) > 1:
                     if _split[1] in ["dll", "pdb"]:
-                        print(_split)
                         if _split[0] in _keyed_plugins.keys():
                             _keyed_plugins[_split[0]].append(plugin)
                         else:
                             _keyed_plugins.update({_split[0]:[plugin]})
 
         for key_plugin in _keyed_plugins:
-                print(key_plugin, _keyed_plugins[key_plugin])
                 bndlr = Bundler()
                 _pFull = f"{NirnPaths.OBSE_INSTALLED_PATH}{key_plugin}/"
                 _bun = bndlr.create_bundle(

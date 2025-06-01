@@ -47,14 +47,12 @@ class InstalledDir(DirectoryTree):
             if not exists(f"{NirnPaths.PAK_INSTALLED_PATH}{_split[0]}/"):
                 if len(_split) > 1:
                     if _split[1] in ["pak", "utoc", "ucas"]:
-                        print(_split)
                         if _split[0] in _keyed_paks.keys():
                             _keyed_paks[_split[0]].append(pak)
                         else:
                             _keyed_paks.update({_split[0]:[pak]})
 
         for key_pak in _keyed_paks:
-                print(key_pak, _keyed_paks[key_pak])
                 bndlr = Bundler()
                 _pFull = f"{NirnPaths.PAK_INSTALLED_PATH}{key_pak}/"
                 _bun = bndlr.create_bundle(

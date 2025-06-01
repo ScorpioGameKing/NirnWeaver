@@ -1,7 +1,7 @@
 from glob import glob
 from os import remove, listdir
-from os.path import basename, join, exists
-from shutil import copy2
+from os.path import basename, join, exists, isdir
+from shutil import copy2, copytree
 from nirn_weaver import NirnPaths
 from nirn_weaver.bundles import Bundler, Bundle
 from textual.widgets import DirectoryTree
@@ -27,48 +27,60 @@ class InstalledDir(DirectoryTree):
         bndlr = Bundler()
         mod_list = glob(f"{NirnPaths.OB_UE4SS_MODS_PATH}/*")
         for mod in mod_list:
-            print(mod)
-            '''
-            _pBase = basename(mod)
-            _pFull = f"{NirnPaths.UE4SS_INSTALLED_PATH}{_pBase}/"
-            _bun = bndlr.create_bundle(
-                _pFull, 
-                "UE4SS", 
-                _pBase
-            )
-            _files = listdir(f"{mod}/")
-            for _fName in _files:
-                copy2(join(f"{mod}/", _fName), _pFull)
-            self.bundles.update({_pBase:_bun})
-            '''
+            if basename(mod) not in ["mods.txt", "shared"]:
+                #print(mod)
+                _pBase = basename(mod)
+                _pFull = f"{NirnPaths.UE4SS_INSTALLED_PATH}{_pBase}/"
+                if not exists(_pFull):
+                    _bun = bndlr.create_bundle(
+                        _pFull, 
+                        "UE4SS", 
+                        _pBase
+                    )
+                    _files = listdir(f"{mod}/")
+                    for _fName in _files:
+                        if isdir(join(f"{mod}/", _fName)):
+                            copytree(join(f"{mod}/", _fName), f"{_pFull}{_fName}")
+                        else:
+                            copy2(join(f"{mod}/", _fName), _pFull)
+                    self.bundles.update({_pBase:_bun})
 
     def stage_valid_mods(self, scan_path):
         mod_list = glob(f"{scan_path}**/*", recursive=True)
         _keyed_mods = {}
         for mod in mod_list:
             _split = basename(mod).split(".")
-            if not exists(f"{NirnPaths.UE4SS_INSTALLED_PATH}{_split[0]}/"):
+            _folder = mod.strip(scan_path).split('/')[0]
+            if not exists(f"{NirnPaths.UE4SS_INSTALLED_PATH}{_folder}/"):
                 if len(_split) > 1:
                     if _split[1] in ["lua"]:
-                        print(_split)
-                        '''
-                        if _split[0] in _keyed_mods.keys():
-                            _keyed_mods[_split[0]].append(mod)
-                        else:
-                            _keyed_mods.update({_split[0]:[mod]})
-                        '''
-        '''
+                        print(f"MOD PATHS: {mod.strip(scan_path).split('/')[0]}")
+                        if _folder not in _keyed_mods.keys():
+                            _keyed_mods.update({_folder:[_folder]})
+
         for key_mod in _keyed_mods:
-                print(key_mod, _keyed_mods[key_mod])
+                print(f"MOD: {key_mod} FOLDER: {_keyed_mods[key_mod]}")
                 bndlr = Bundler()
                 _pFull = f"{NirnPaths.UE4SS_INSTALLED_PATH}{key_mod}/"
+                print(f"STAGING PATH: {_pFull}")
+                print(f"ORIGIN PATH: {NirnPaths.DOWNLOAD_PATH}{key_mod}/")
                 _bun = bndlr.create_bundle(
                     _pFull,
                     "UE4SS",
                     key_mod
                 )
+
+                _files = listdir(f"{NirnPaths.DOWNLOAD_PATH}{key_mod}/")
+                for _fName in _files:
+                    if isdir(join(f"{NirnPaths.DOWNLOAD_PATH}{key_mod}/", _fName)):
+                        copytree(join(f"{NirnPaths.DOWNLOAD_PATH}{key_mod}/", _fName), f"{_pFull}{_fName}")
+                    else:
+                        copy2(join(f"{NirnPaths.DOWNLOAD_PATH}{key_mod}/", _fName), _pFull)
+                
+                '''
                 for _fName in _keyed_mods[key_mod]:
                     copy2(_fName, _pFull)
+                '''    
                 self.bundles.update({key_mod:_bun})
                 bndlr.uninstall_bundle(
                     _bun,
@@ -77,7 +89,6 @@ class InstalledDir(DirectoryTree):
                     NirnPaths.UE4SS_UNINSTALLED_PATH
                 )
                 self.uninstall.reload()
-        '''
             
     def action_uninstall_plugin(self):
         if self.cursor_node.data.path != NirnPaths.UE4SS_INSTALLED_PATH:
