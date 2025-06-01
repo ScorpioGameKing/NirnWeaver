@@ -38,14 +38,20 @@ class NirnPaths():
     BUN_UNINSTALLED_PATH   = f"{BUN_PATH}uninstalled/"
     BUN_INSTALLED_PATH     = f"{BUN_PATH}installed/"
 
-    # - OBLIVION -    
+    # - OBLIVION CORE -    
     OBR_PATH               = f"{USR_PATH}.local/share/Steam/steamapps/common/Oblivion Remastered/"
     OB_WIN_64_PATH         = f"{OBR_PATH}OblivionRemastered/Binaries/Win64/"
-    OB_PAK_PATH            = f"{OBR_PATH}OblivionRemastered/Content/Paks/~mods/"
     OB_OBV_DATA_PATH       = f"{OBR_PATH}OblivionRemastered/Content/Dev/ObvData/"
     OB_ESP_DATA_PATH       = f"{OBR_PATH}OblivionRemastered/Content/Dev/ObvData/Data/"
     OB_PLUGINS_TXT         = f"{OBR_PATH}OblivionRemastered/Content/Dev/ObvData/Data/Plugins.txt"
 
+    # - OBLIVION MODS -
+    OB_PAK_PATH            = f"{OBR_PATH}OblivionRemastered/Content/Paks/~mods/"
+    OB_OBSE_PATH           = f"{OB_WIN_64_PATH}OBSE/"
+    OB_OBSE_PLUGINS_PATH   = f"{OB_OBSE_PATH}Plugins/"
+    OB_UE4SS_PATH          = f"{OB_WIN_64_PATH}ue4ss/"
+    OB_UE4SS_MODS_PATH     = f"{OB_UE4SS_PATH}Mods/"
+    
     # - TCSS -
     WEAVER_CSS             = f"./tcss/_nirn_weaver.tcss"
 
@@ -100,3 +106,11 @@ class NirnPaths():
         # - OBLIVION -
         if not exists(NirnPaths.OB_PAK_PATH):
             mkdir(NirnPaths.OB_PAK_PATH)
+        if not exists(NirnPaths.OB_OBSE_PATH):
+            mkdir(NirnPaths.OB_OBSE_PATH)
+        if not exists(NirnPaths.OB_OBSE_PLUGINS_PATH):
+            mkdir(NirnPaths.OB_OBSE_PLUGINS_PATH)
+        if not exists(NirnPaths.OB_UE4SS_PATH):
+            mkdir(NirnPaths.OB_UE4SS_PATH)
+        if not exists(NirnPaths.OB_UE4SS_MODS_PATH):
+            mkdir(NirnPaths.OB_UE4SS_MODS_PATH)
