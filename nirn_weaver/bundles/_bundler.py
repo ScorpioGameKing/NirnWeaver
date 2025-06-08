@@ -12,14 +12,29 @@ class Bundler:
             mkdir(f"{to_path}")
         return Bundle(bType, name, tags, description)
 
-    def uninstall_bundle(self, bundle, from_path:str, staged_at:str, to_path:str):
+    def uninstall_bundle(self, bundle, from_path:str, staged_at:str, to_path:str, mode:str="d"):
         #TODO Make and store page file
-        with tarfile.open(f"{to_path}{bundle.name}", "w:bz2") as tar:
-            tar.add(f"{from_path}", arcname=bundle.name)
-        if exists(f"{from_path}"):
-            rmtree(f"{from_path}")
-        if exists(f"{staged_at}"):
-            rmtree(f"{staged_at}")
+        match mode:
+            case "d":
+                with tarfile.open(f"{to_path}{bundle.name}", "w:bz2") as tar:
+                    tar.add(f"{from_path}", arcname=bundle.name)
+                if exists(f"{from_path}"):
+                    rmtree(f"{from_path}")
+                if exists(f"{staged_at}"):
+                    rmtree(f"{staged_at}")
+            case "f":
+                print("File Mode")
+                print("CONTENTS")
+                print(f"{bundle.dump_contents()}")
+                with tarfile.open(f"{to_path}{bundle.name}", "w:bz2") as tar:
+                    for _file in bundle.dump_contents():
+                        print(f"FILE: {_file}")
+                        #print(f"{bundle.get_content(_file)} arcname: {_file}")
+                        tar.add(f"{bundle.get_content(_file)}", arcname=_file)
+                        remove(f"{from_path}.{_file.split('.')[1]}")
+                if exists(f"{staged_at}"):
+                    rmtree(f"{staged_at}")
+                        
 
     def install_bundle(self, name, to_path, stage_to, from_path):
         #TODO Create Bundle using page file

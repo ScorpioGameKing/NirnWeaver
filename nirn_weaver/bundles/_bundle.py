@@ -23,7 +23,13 @@ class Bundle:
     def update_description(self, description):
         self.description = description
 
-    def get_contents(self, key):
+    def add_content(self, key, _cont):
+        self._contents.update({key:_cont})
+
+    def dump_contents(self):
+        return self._contents
+
+    def get_content(self, key):
         return self._contents[key]
 
     def remove_contents(self, key):

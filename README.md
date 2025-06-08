@@ -8,14 +8,17 @@
 	[x] Stage ESP/ESM files for quick Install/Uninstall
 	[x] Install and Uninstall ESP/ESM files
 	[X] Modify and save the load order to Plugins.txt
+	[x] Stage & Install/Uninstall OBSE Plugins
+
+### Work In Progress Features
+
+	[-] Bundle Mods for bulk Install/Uninstall
+	[-] Stage & Install/Uninstall Pak mods
+	[-] Stage & Install/Uninstall UE4SS Mods
 	
 ### Planned Features
 
-	[] Stage & Install/Uninstall Pak mods
-	[] Stage & Install/Uninstall OBSE Plugins
-	[] Stage & Install/Uninstall UE4SS Mods
 	[] Config Options
-	[] Bundle Mods for bulk Install/Uninstall
 	[] Windows Support
 
 ## Useage Requirements

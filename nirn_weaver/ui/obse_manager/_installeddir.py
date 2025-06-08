@@ -26,6 +26,32 @@ class InstalledDir(DirectoryTree):
     def scan_installed_plugins(self):
         bndlr = Bundler()
         plugin_list = glob(f"{NirnPaths.OB_OBSE_PLUGINS_PATH}/*")
+        _keyed_plugins = {}
+        for plugin in plugin_list:
+            _split = basename(plugin).split(".")
+            #if not exists(f"{NirnPaths.OBSE_INSTALLED_PATH}{_split[0]}/"):
+            if len(_split) > 1:
+                if _split[1] in ["dll", "pdb"]:
+                    if _split[0] in _keyed_plugins.keys():
+                        _keyed_plugins[_split[0]].append(plugin)
+                    else:
+                        _keyed_plugins.update({_split[0]:[plugin]})
+
+        for key_plugin in _keyed_plugins:
+            bndlr = Bundler()
+            _pFull = f"{NirnPaths.OBSE_INSTALLED_PATH}{key_plugin}/"
+            _bun = bndlr.create_bundle(
+                _pFull,
+                "OBSE",
+                key_plugin
+            )
+            for _fName in _keyed_plugins[key_plugin]:
+                copy2(_fName, _pFull)
+                _bun.add_content(basename(_fName), _fName)
+            self.bundles.update({key_plugin:_bun})
+
+
+        '''                            
         for plugin in plugin_list:
             _pBase = basename(plugin)
             _pFull = f"{NirnPaths.OBSE_INSTALLED_PATH}{_pBase}/"
@@ -38,7 +64,8 @@ class InstalledDir(DirectoryTree):
             for _fName in _files:
                 copy2(join(f"{plugin}/", _fName), _pFull)
             self.bundles.update({_pBase:_bun})
-
+        '''
+        
     def stage_valid_plugins(self, scan_path):
         plugin_list = glob(f"{scan_path}**/*", recursive=True)
         _keyed_plugins = {}
@@ -78,8 +105,8 @@ class InstalledDir(DirectoryTree):
                 self.bundles[f"{self.cursor_node.label}"],
                 f"{NirnPaths.OB_OBSE_PLUGINS_PATH}{self.cursor_node.label}",
                 self.cursor_node.data.path, 
-                NirnPaths.OBSE_UNINSTALLED_PATH
+                NirnPaths.OBSE_UNINSTALLED_PATH, 
+                "f"
             )
             self.reload()
             self.uninstall.reload()
-        pass
