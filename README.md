@@ -121,5 +121,5 @@ and improved storage space. Using these bundles you can easily install the group
 Bundles are NirnWeaver's method of handling groups of files. When a manager scans a directory for files it will first create 
 a key of the valid files. From there they are staged and a Bundle is created to track and manage files for each mod found. 
 This allows us to quickly find everything we need for installing and uninstalling mods. When Bundles are uninstalled they are
-compressed into a into a tarbar with bz2 saving plenty of space. Currently Bundles are not saved between runs requiring a new
+compressed into a into a tarball with bz2 saving plenty of space. Currently Bundles are not saved between runs requiring a new
 indexing process each launch, this is known and will be addressed.
