@@ -69,6 +69,7 @@ class InstalledDir(DirectoryTree):
                     _pFull, 
                     NirnPaths.PAK_UNINSTALLED_PATH
                 )
+                self.reload()
                 self.uninstall.reload()
             
     def action_uninstall_pak(self):

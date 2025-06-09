@@ -49,22 +49,6 @@ class InstalledDir(DirectoryTree):
                 copy2(_fName, _pFull)
                 _bun.add_content(basename(_fName), _fName)
             self.bundles.update({key_plugin:_bun})
-
-
-        '''                            
-        for plugin in plugin_list:
-            _pBase = basename(plugin)
-            _pFull = f"{NirnPaths.OBSE_INSTALLED_PATH}{_pBase}/"
-            _bun = bndlr.create_bundle(
-                _pFull, 
-                "OBSE", 
-                _pBase
-            )
-            _files = listdir(f"{plugin}/")
-            for _fName in _files:
-                copy2(join(f"{plugin}/", _fName), _pFull)
-            self.bundles.update({_pBase:_bun})
-        '''
         
     def stage_valid_plugins(self, scan_path):
         plugin_list = glob(f"{scan_path}**/*", recursive=True)
@@ -96,6 +80,7 @@ class InstalledDir(DirectoryTree):
                     _pFull, 
                     NirnPaths.OBSE_UNINSTALLED_PATH
                 )
+                self.reload()
                 self.uninstall.reload()
             
     def action_uninstall_plugin(self):

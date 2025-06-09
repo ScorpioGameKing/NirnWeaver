@@ -24,7 +24,8 @@ class UninstalledDir(DirectoryTree):
                 basename(path.path), 
                 NirnPaths.OB_OBSE_PLUGINS_PATH, 
                 NirnPaths.OBSE_INSTALLED_PATH, 
-                NirnPaths.OBSE_UNINSTALLED_PATH
+                NirnPaths.OBSE_UNINSTALLED_PATH,
+                "d"
             )
         node.reload()
         node.install.reload()

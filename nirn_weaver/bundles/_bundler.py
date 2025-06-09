@@ -36,13 +36,24 @@ class Bundler:
                     rmtree(f"{staged_at}")
                         
 
-    def install_bundle(self, name, to_path, stage_to, from_path):
+    def install_bundle(self, name, to_path, stage_to, from_path, mode:str="f"):
         #TODO Create Bundle using page file
-        if exists(f"{to_path}{name}/"):
-            rmtree(f"{to_path}{name}")
-        if exists(f"{stage_to}{name}/"):
-            rmtree(f"{stage_to}{name}")
-        with tarfile.open(f"{from_path}{name}") as tar:
-            tar.extractall(f"{to_path}")
-            tar.extractall(f"{stage_to}{name}/")
-        remove(f"{from_path}{name}")
+        match mode:
+            case "f":
+                if exists(f"{to_path}{name}/"):
+                    rmtree(f"{to_path}{name}")
+                if exists(f"{stage_to}{name}/"):
+                    rmtree(f"{stage_to}{name}")
+                with tarfile.open(f"{from_path}{name}") as tar:
+                    tar.extractall(f"{to_path}")
+                    tar.extractall(f"{stage_to}")
+                remove(f"{from_path}{name}")
+            case "d":
+                if exists(f"{to_path}{name}/"):
+                    rmtree(f"{to_path}{name}")
+                if exists(f"{stage_to}{name}/"):
+                    rmtree(f"{stage_to}{name}")
+                with tarfile.open(f"{from_path}{name}") as tar:
+                    tar.extractall(f"{to_path}")
+                    tar.extractall(f"{stage_to}{name}/")
+                remove(f"{from_path}{name}")
