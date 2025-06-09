@@ -44,5 +44,5 @@ class Bundler:
             rmtree(f"{stage_to}{name}")
         with tarfile.open(f"{from_path}{name}") as tar:
             tar.extractall(f"{to_path}")
-            tar.extractall(f"{stage_to}")
+            tar.extractall(f"{stage_to}{name}/")
         remove(f"{from_path}{name}")
