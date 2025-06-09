@@ -29,7 +29,7 @@
 > [!IMPORTANT]
 > Nirn Weaver currently has no build and can only be run via CLI.
 
-To run Nirn Weaver ensure you have Textual install with:
+To run Nirn Weaver ensure you have Textual installed in your env/venv with:
 
 ```
 pip install textual textual-dev
@@ -41,26 +41,54 @@ To run:
 python main.py
 ```
 
-## Managing ESP/ESM Files
+Or:
+
+```
+textual run main.py
+```
+
+To exit simply press `Ctrl + q`
+
+## Menu Overviews
+
+### ESP Manager
 
 ![The default ESP Managing view.](https://github.com/ScorpioGameKing/NirnWeaver/blob/main/assets/images/NirnWeaverESPTUI.png)
 
-> The default ESP Managing view
+> [!INFORMATION]
+> The ESP Manager is the current default landing page for NirnWeaver
 
-### Load Order
+The ESP Manager helps automatically stage any valid esp files found in the Downloads directory and inside the game files. With 
+these staged files you can easily install and uninstall quickly while having quick tools for adjusting your load order.
+
+#### Load Order
 
 ![The ESP Load Order Manager.](https://github.com/ScorpioGameKing/NirnWeaver/blob/main/assets/images/NirnWeaverESPLoadOrder.png)
 
+> [!INFORMATION]
 > The ESP Load Order Manager
 
-### Staging View
+Within this view you can see and adjust your current load order with `Ctrl + Up/Down`. To save an order press `Shift + S`.
+
+#### Staging View
 
 ![The ESP Staging Manager.](https://github.com/ScorpioGameKing/NirnWeaver/blob/main/assets/images/NirnWeaverESPStaging.png)
 
+> [!INFORMATION]
 > The ESP Staging Manager
 
-### Status Bar and Keybinds
+This is a split view of NirnWeaver's ESP/ESM staging directory. Any mod you select in the uninstalled section (Left side) will
+be moved to the installed directory and added into the appropriate directory in the game. The same goes for the installed
+section, just in reverse.
+
+#### Status Bar and Keybinds
 
 ![The Status-bar and Keybinds.](https://github.com/ScorpioGameKing/NirnWeaver/blob/main/assets/images/NirnWeaverESPKeys.png)
 
+> [!INFORMATION]
 > The Status-bar and Keybinds
+
+> [!IMPORTANT]
+> The Reactive Elements of the status bar are WIP
+
+On any screen of NirnWeaver is a footer bar with helpful keybinding reference.
