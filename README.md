@@ -55,7 +55,7 @@ To exit simply press `Ctrl + q`
 
 ![The default ESP Managing view.](https://github.com/ScorpioGameKing/NirnWeaver/blob/main/assets/images/NirnWeaverESPTUI.png)
 
-> [!INFORMATION]
+> [!INFO]
 > The ESP Manager is the current default landing page for NirnWeaver
 
 The ESP Manager helps automatically stage any valid esp files found in the Downloads directory and inside the game files. With 
@@ -65,7 +65,7 @@ these staged files you can easily install and uninstall quickly while having qui
 
 ![The ESP Load Order Manager.](https://github.com/ScorpioGameKing/NirnWeaver/blob/main/assets/images/NirnWeaverESPLoadOrder.png)
 
-> [!INFORMATION]
+> [!INFO]
 > The ESP Load Order Manager
 
 Within this view you can see and adjust your current load order with `Ctrl + Up/Down`. To save an order press `Shift + S`.
@@ -74,7 +74,7 @@ Within this view you can see and adjust your current load order with `Ctrl + Up/
 
 ![The ESP Staging Manager.](https://github.com/ScorpioGameKing/NirnWeaver/blob/main/assets/images/NirnWeaverESPStaging.png)
 
-> [!INFORMATION]
+> [!INFO]
 > The ESP Staging Manager
 
 This is a split view of NirnWeaver's ESP/ESM staging directory. Any mod you select in the uninstalled section (Left side) will
@@ -85,7 +85,7 @@ section, just in reverse.
 
 ![The Status-bar and Keybinds.](https://github.com/ScorpioGameKing/NirnWeaver/blob/main/assets/images/NirnWeaverESPKeys.png)
 
-> [!INFORMATION]
+> [!INFO]
 > The Status-bar and Keybinds
 
 > [!IMPORTANT]
