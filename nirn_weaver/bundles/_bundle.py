@@ -1,6 +1,7 @@
-from shutil import move
+import yaml
 
 class Bundle:
+    _header:dict
     _contents:dict
     _bType:str
     name:str
@@ -13,6 +14,16 @@ class Bundle:
         self.name = name
         self.tags = tags
         self.description = description
+        self.construct_header()
+
+    def construct_header(self):
+        self._header = {
+            'type': self._bType,
+            'name': self.name,
+            'tags': self.tags,
+            'desc': self.description
+        }
+        print(self._header)
 
     def update_name(self, name):
         self.name = name
