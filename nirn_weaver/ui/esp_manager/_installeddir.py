@@ -33,7 +33,7 @@ class InstalledDir(DirectoryTree):
     def stage_valid_es(self, scan_path):
         esp_list = glob(f"{scan_path}**/*.es*", recursive=True)
         for esp in esp_list:
-            if not exists(f"{NirnPaths.ES_INSTALLED_PATH}{path.basename(esp)}"):
-                if exists(f"{NirnPaths.ES_UNINSTALLED_PATH}{path.basename(esp)}"):
-                    remove(f"{NirnPaths.ES_UNINSTALLED_PATH}{path.basename(esp)}")
-                copy2(esp, f"{NirnPaths.ES_UNINSTALLED_PATH}{path.basename(esp)}")
+            if not exists(f"{NirnPaths.ES_INSTALLED_PATH}{basename(esp)}"):
+                if exists(f"{NirnPaths.ES_UNINSTALLED_PATH}{basename(esp)}"):
+                    remove(f"{NirnPaths.ES_UNINSTALLED_PATH}{basename(esp)}")
+                copy2(esp, f"{NirnPaths.ES_UNINSTALLED_PATH}{basename(esp)}")
